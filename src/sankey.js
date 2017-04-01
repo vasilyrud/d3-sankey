@@ -119,7 +119,8 @@ export default function() {
     while (remainingNodes.length) {
       nextNodes = [];
       remainingNodes.forEach(function(node) {
-        node.x = x;
+        // node.x = x;
+        node.x = node.time;
         node.dx = nodeWidth;
         node.sourceLinks.forEach(function(link) {
           if (nextNodes.indexOf(link.target) < 0) {
