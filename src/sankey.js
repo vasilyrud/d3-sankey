@@ -65,6 +65,12 @@ export default function() {
           x3 = xi(1 - curvature),
           y0 = d.source.y + d.sy + d.dy / 2,
           y1 = d.target.y + d.ty + d.dy / 2;
+
+      if (isNaN(y0)) {
+        y0 = 0;
+        y1 = 0;
+      }
+
       return "M" + x0 + "," + y0
            + "C" + x2 + "," + y0
            + " " + x3 + "," + y1
@@ -173,6 +179,21 @@ export default function() {
       resolveCollisions();
       relaxLeftToRight(alpha);
       resolveCollisions();
+    }
+    alternate_titles();
+
+    function alternate_titles() {
+      nodes.forEach(function(node, i) {
+        if (node.name !== "bank") {
+          if (i % 4 == 0) {
+            node.y += 20;
+          } else if (i % 4 == 1) {
+            node.y += 40;
+          } else if (i % 4 == 2) {
+            node.y += 60;
+          }
+        }
+      });
     }
 
     function initializeNodeDepth() {
